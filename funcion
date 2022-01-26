@@ -1,0 +1,27 @@
+function p = lagrange(x,y)
+%{
+Joel Quintuna
+x: vector de puntos
+y: vector de puntos
+%}
+n=length(x);%numero de elementos del vector x,cuantas veces se repite
+syms t;%variable que ayudara a representar el polinomio obtenido para poder graficar
+p=0;%variable para acumular la suma
+if (length(x)<length(y))
+    error('Lagrange: el vector x o y estan vacios,revise la entrada');
+end
+
+hold on
+plot(x,y,'*')
+for i=1:n
+    L=1;%se inicia en uno ya que al ser una productoria se hace cero al iniciarla con cero
+    for j=1:n
+        if i~=j%i debe ser diferente de j ya que si se da este caso en la productoria se da una division para cero
+            L=L*(t-x(j))/(x(i)-x(j));%se calcula el nuevo termino de la productoria para el polinomio de lagrange, se usa t para formar el polinomio que se graficara despues
+        end
+    end
+    p=p+L*y(i);%el termino calculado se multiplica por y(i) para completar la formula de lagrange
+end
+p=expand(p)%muestra el polinomio obtenido en la variable t
+hold on;
+ezplot(p,[0,100])%grafica la funcion obtenida
