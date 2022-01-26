@@ -1,0 +1,10 @@
+x=[1,2,3,5,7,8];%puntos dados por donde debe pasar el polinomio
+y=[3,6,19,99,291,444];
+%la funcion lagrange presenta la grafica de la funcion que mejor se ajusta
+%al conjunto de puntos dados asi como la ecuacion que representa esa
+%grafica
+try
+    lagrange(x,y);
+catch err
+    fprintf('error: %s\n', err.message);
+end
